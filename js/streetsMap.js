@@ -28,39 +28,10 @@ function initmap(){
 	map.addLayers([gmap, gphy, ghyb, gsat]);
 	map.setBaseLayer(gsat);
 
-	//describe visual effects when features are displayed
-	streetStyles = new OpenLayers.StyleMap({
-		"default": new OpenLayers.Style({
-			strokeColor: "yellow",
-			strokeOpacity: 1,
-			strokeWidth: 4,
-			fillColor: "orange",
-			fillOpacity: 0.1,
-			pointRadius: 6,
-		}),
-		"select": new OpenLayers.Style({
-			strokeColor: "blue",
-			strokeOpacity: 1,
-			strokeWidth: 4,
-			fillColor: "blue",
-			fillOpacity: 0.3,
-			pointRadius: 6,
-		})
-	});
+
 
 
 	// Make a fresh vector layer, pulling features from our script URL
-	streets = new OpenLayers.Layer.Vector("Streets", {
-		projection: map.displayProjection,
-		strategies: [new OpenLayers.Strategy.Fixed()],
-		protocol: new OpenLayers.Protocol.HTTP({
-			url: "functions/getStreets.php",
-			format: new OpenLayers.Format.GeoJSON()
-		}),
-		styleMap: streetStyles
-	}); 
-
-	
 	drawStyles = new OpenLayers.StyleMap({
 		"default": new OpenLayers.Style({
 			strokeColor: "orange",
@@ -81,15 +52,6 @@ function initmap(){
 	});
 
 	
-	damages = new OpenLayers.Layer.Vector("Damages", {
-		projection: map.displayProjection,
-		strategies: [new OpenLayers.Strategy.Fixed()],
-		protocol: new OpenLayers.Protocol.HTTP({
-			url: "functions/getDamages.php",
-			format: new OpenLayers.Format.GeoJSON()
-		}),
-		styleMap: drawStyles			
-	}); 
 				
 	villages = new OpenLayers.Layer.Vector("Villages", {
 		projection: map.displayProjection,
@@ -102,18 +64,9 @@ function initmap(){
 	}); 
 
 
-	map.addLayers([streets, damages, villages ]);
-
-	select = new OpenLayers.Control.SelectFeature([streets, damages, villages]);            
-	streets.events.on({
-		"featureselected": onStreetSelect,
-		"featureunselected": onStreetUnselect
-	});
+	map.addLayers([villages ]);
 	
-	damages.events.on({
-		"featureselected": onDamageSelect,
-		"featureunselected": onDamageUnselect
-	});
+	select = new OpenLayers.Control.SelectFeature([villages]);            
 
 	villages.events.on({
 		"featureselected": onVillageSelect,
@@ -129,44 +82,13 @@ function initmap(){
 	map.zoomToExtent(
 		new OpenLayers.Bounds(
 			//100.0600, 19.0775, 100.0700, 19.0875
-			100.75218, 18.56139 , 100.92841 , 18.67039
+			100.74816, 18.56422 , 100.92694 , 18.60276
 		).transform(map.displayProjection, map.projection)
 	); 
 }
 
 //details to be shown in map-info <div>
-function onStreetSelect(event) {
-	var feature = event.feature;
-	
-	// feature.attributes are fields selected in getVillages.php
-	$('#info').append('<p>Name:' + feature.attributes.name + '</p>');
-	$('#info').append('<p>Description:' + feature.attributes.description + '</p>');
-	$('#info').append('<p>Type:' + feature.attributes.stype + '</p>');
 
-}
-
-
-function onStreetUnselect(event) {
-	var feature = event.feature;
-
-	$('#info').html('');
-}
-
-
-function onDamageSelect(event) {
-	var feature = event.feature;
-	// feature.attributes are fields selected in getDamages.php
-	$('#info').append('<p>ID:' + feature.attributes.id + '</p>');
-	$('#info').append('<p>Name:' + feature.attributes.description + '</p>');
-	$('#info').append('<p>Image:<img src="images/' + feature.attributes.attach + '"></p>');
-}
-
-
-function onDamageUnselect(event) {
-	var feature = event.feature;
-
-	$('#info').html('');
-}
 
 function onVillageSelect(event) {
 	var feature = event.feature;

@@ -1,0 +1,75 @@
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<head>
+	<title>Openlayers Web Map</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="openlayers" />
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Itim&amp;subset=thai" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<!-- openlayers -->
+    <link rel="stylesheet" href="js/Openlayers-2.13.1/theme/default/style.css" type="text/css">
+    <script src="js/Openlayers-2.13.1/OpenLayers.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyAwDdYtrfnd7K99J0D0SP0Wtm-HqNAv1eM"></script>
+	<script src="js/streetsMap.js"></script>
+    <!--<script src="js/jquery2.0.3.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
+    <style>
+        body { 
+    font-family: 'Itim', cursive;
+        }
+        #map {
+            height:580px;
+        }
+        hr.style5 {
+            background-color: #fff;
+            border-top: 2px dashed #8c8b8b;
+        }
+    </style>
+</head>
+<body>
+    <ul class="nav justify-content-center" style="background-color: #ff9100a6;">
+        <li class="nav-item">
+            <span><h3>แผนที่ตำบลไหล่น่าน อำเภอเวียงสา จังหวัดน่าน</h3></span>
+        </li>
+    </ul>
+
+    
+    </nav>
+    
+    <div class="row">
+        <div class="col-lg-8">
+            <div id="map"></div>
+        </div>
+        <div class="col-lg-4">
+            <div class="container">
+                <h4 class="text-center">ข้อมูล</h4>
+                <hr class="style5">
+                <div id="info"></div>
+            </div>
+    
+        </div>
+
+    </div>
+            
+	<script>    
+		$(document).ready(function() {
+			initmap();
+		});
+    </script>
+</body>
+</html>
+
+
